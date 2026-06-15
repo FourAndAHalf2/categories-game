@@ -1,0 +1,36 @@
+html, body, #root {
+  height: 100%;
+  min-height: 100vh;
+  background-color: #F5F5F5;
+  color: #303841;
+}
+
+.bg-orange{
+   background-color: #FF5722 !important;
+}
+
+.btn-orange{
+  background-color: #FF5722 !important;
+  border-color: #FF5722 !important;
+}
+
+.btn-orange:hover{
+  background-color: #EF4712 !important;
+}
+
+.btn-white{
+  background-color: #F5F5F5 !important;
+  border-color: #F5F5F5 !important;
+}
+
+.btn-white:hover{
+  background-color: #E5E5E5 !important;
+}
+
+.btn {
+  transition: all 1s ease-in-out;
+}
+
+.btn:active {
+  transform: scale(.95);
+}
