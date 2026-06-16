@@ -46,7 +46,7 @@ export default function Practice() {
           <ul className="col-9 list-group">
             {selectedCategories.map((cat) => (
               <li className="list-group-item" key={cat}>
-                <h3>{CapitalizeFirstLetter(cat)}</h3>
+                <h3>{CapitalizeFirstLetter(cat.replace("-"," "))}</h3>
 
                 <input
                   onChange={(e) => {
@@ -57,7 +57,6 @@ export default function Practice() {
                       e.target.value = "";
                     }
 
-                    alert(e.target[0].value.toLowerCase());
                     setUserAnswers((prev) => ({
                       ...prev,
                       [cat]: e.target.value,

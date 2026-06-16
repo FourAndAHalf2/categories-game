@@ -1,8 +1,8 @@
-import Category from '../Components/Category';
-import { useState } from 'react';
+import Category from "../Components/Category";
+import { useState } from "react";
 
 function App() {
-  const categories = ["countries", "cities", "animals"];
+  const categories = ["countries", "cities", "animals", "fruits", "car brands"];
 
   const [selectedCategories, setSelectedCategories] = useState([]);
 
@@ -40,16 +40,15 @@ function App() {
             type="button"
             style={{ width: "100%" }}
             className="btn btn-orange mt-5"
-            onClick={() => document.location=`practice?categories=${selectedCategories.join(",")}`}
-            disabled={selectedCategories.length<3}
-            
+            onClick={() =>
+              (document.location = `practice?categories=${selectedCategories.map((cat)=>cat.replace(" ","-")).join(",")}`)
+            }
+            disabled={selectedCategories.length < 3}
           >
             <h3>practice </h3>
           </button>
         </div>
       </div>
-
-      
     </div>
   );
 }
