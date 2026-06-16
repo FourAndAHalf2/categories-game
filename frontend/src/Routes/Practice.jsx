@@ -64,6 +64,7 @@ export default function Practice() {
                     }));
                   }}
                   placeholder={`${randomLetter}...`}
+                  value={userAnswers[cat]}
                 ></input>
                 {isSubmited && (
                   <span>
@@ -93,6 +94,9 @@ export default function Practice() {
               onClick={() => {
                 setRandomLetter(GetRandomLetter());
                 setIsSubmited(false);
+                selectedCategories.forEach((cat) => {
+                  userAnswers[cat] = "";
+                });
               }}
             >
               Play again
