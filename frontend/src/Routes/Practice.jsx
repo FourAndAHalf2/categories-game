@@ -34,7 +34,6 @@ export default function Practice() {
   const [isSubmited, setIsSubmited] = useState(false);
   const [userAnswers, setUserAnswers] = useState({});
 
-  console.log(Choice([1, 2]));
   return (
     <>
       <div className="container">
@@ -50,12 +49,20 @@ export default function Practice() {
                 <h3>{CapitalizeFirstLetter(cat)}</h3>
 
                 <input
-                  onChange={(e) =>
+                  onChange={(e) => {
+                    if (
+                      e.target.value[0].toLowerCase() !=
+                      randomLetter.toLowerCase()
+                    ) {
+                      e.target.value = "";
+                    }
+
+                    alert(e.target[0].value.toLowerCase());
                     setUserAnswers((prev) => ({
                       ...prev,
                       [cat]: e.target.value,
-                    }))
-                  }
+                    }));
+                  }}
                   placeholder={`${randomLetter}...`}
                 ></input>
                 {isSubmited && (
@@ -79,16 +86,18 @@ export default function Practice() {
           >
             <h2>Submit</h2>
           </button>
-          {isSubmited && <button
-            className="btn btn-orange mt-2"
-            style={{ width: "auto" }}
-            onClick={() => {
-              setRandomLetter(GetRandomLetter());
-                setIsSubmited(false)
-            }}
-          >
-            Play again
-          </button>}
+          {isSubmited && (
+            <button
+              className="btn btn-orange mt-2"
+              style={{ width: "auto" }}
+              onClick={() => {
+                setRandomLetter(GetRandomLetter());
+                setIsSubmited(false);
+              }}
+            >
+              Play again
+            </button>
+          )}
         </div>
       </div>
     </>
