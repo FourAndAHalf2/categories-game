@@ -17,7 +17,7 @@ function App() {
   return (
     <div className="container">
       <div className="row">
-        <h1 className=" text-center">Categories Game</h1>
+        <h1 className="text-center">Categories Game</h1>
         <div className="col">
           <h3>Select categories</h3>
 
@@ -41,7 +41,10 @@ function App() {
             style={{ width: "100%" }}
             className="btn btn-orange mt-5"
             onClick={() =>
-              (document.location = `practice?categories=${selectedCategories.map((cat) => cat.replace(" ", "-")).join(",")}`)
+              (document.location = `practice?categories=${categories
+                .filter((cat) => selectedCategories.includes(cat)) // keeps defined order of categories 
+                .map((cat) => cat.replace(" ", "-"))
+                .join(",")}`)
             }
             disabled={selectedCategories.length < 3}
           >
