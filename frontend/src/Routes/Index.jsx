@@ -41,7 +41,7 @@ function App() {
             style={{ width: "100%" }}
             className="btn btn-orange mt-5"
             onClick={() =>
-              (document.location = `practice?categories=${selectedCategories.map((cat)=>cat.replace(" ","-")).join(",")}`)
+              (document.location = `practice?categories=${selectedCategories.map((cat) => cat.replace(" ", "-")).join(",")}`)
             }
             disabled={selectedCategories.length < 3}
           >

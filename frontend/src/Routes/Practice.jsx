@@ -69,7 +69,7 @@ export default function Practice() {
                   <span>
                     {listOfCorrectAnswers[cat]?.some(
                       (x) =>
-                        x.toLowerCase() === userAnswers[cat]?.toLowerCase(),
+                        x.toLowerCase() === userAnswers[cat]?.toLowerCase() && x!="",
                     )
                       ? "Correct"
                       : `Incorrect or that anwser isn't in the database, correct is e.g ${Choice(listOfCorrectAnswers[cat].filter((x) => x[0] == randomLetter)) || "no answer found in the database"}`}
