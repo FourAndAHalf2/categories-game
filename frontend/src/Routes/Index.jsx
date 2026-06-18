@@ -26,10 +26,21 @@ function App() {
               <Category
                 key={category}
                 name={category}
+                isActive={selectedCategories.includes(category)}
                 onToggle={() => toggleCategory(category)}
               />
             ))}
           </ul>
+
+          <button
+            type="button"
+            className="btn btn-orange rounded-0"
+            onClick={() => {
+              setSelectedCategories(categories);
+            }}
+          >
+            <b>Select all</b>
+          </button>
 
           {selectedCategories.length < 3 && (
             <p className="text-danger">
@@ -42,7 +53,7 @@ function App() {
             className="btn btn-orange mt-5"
             onClick={() =>
               (document.location = `practice?categories=${categories
-                .filter((cat) => selectedCategories.includes(cat)) // keeps defined order of categories 
+                .filter((cat) => selectedCategories.includes(cat)) // keeps defined order of categories
                 .map((cat) => cat.replace(" ", "-"))
                 .join(",")}`)
             }
