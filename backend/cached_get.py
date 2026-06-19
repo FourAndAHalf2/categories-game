@@ -16,7 +16,6 @@ def cached_get(url: str, cache_duration=10, headers: dict | None = None) -> str:
 
     now = datetime.now()
 
-
     entry = cache.get(url)
     if entry and entry["expiry"] > now:
         return entry["content"]
@@ -25,7 +24,6 @@ def cached_get(url: str, cache_duration=10, headers: dict | None = None) -> str:
 
     cache_directory = Path(__file__).parent / "data" / "cache"
     cache_directory.mkdir(parents=True, exist_ok=True)
-
 
     for file_path in cache_directory.glob(f"{hash_of_url}.*"):
         try:
@@ -60,6 +58,7 @@ def cached_get(url: str, cache_duration=10, headers: dict | None = None) -> str:
     }
 
     return response.text
+
 
 def cached_get_static(url: str, headers: dict | None = None) -> str:
     """# Fetching and caching static data of a website

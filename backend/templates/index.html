@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Categories Game</title>
+    <style>
+        td,th{
+            border: solid 1px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1> Manage Categories Game</h1>
+    <h3>average response time</h3>
+    <table>
+        <tr>
+            <th>
+                endpoint
+            </th>
+            <th>
+                time in ms
+            </th>
+        </tr>
+        
+        {%for i in range(0,length)%}
+
+        <tr>
+            <td>api/{{names[i]}} </td>
+            <td>{{average_response_times[i]}}ms</td>
+
+        </tr>
+        {%endfor%}
+
+    </table>
+</body>
+
+</html>
