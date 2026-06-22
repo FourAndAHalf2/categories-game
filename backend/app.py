@@ -91,6 +91,11 @@ def car_brands():
     list_of_car_brands = [brand["name"] for brand in list_of_car_brands]
     return jsonify(list_of_car_brands)
 
+@app.route("/api/first-names")
+@calculate_average_response_time
+def first_names():
+    list_of_first_names = [i.strip() for i in cached_get_static("https://raw.githubusercontent.com/dominictarr/random-name/refs/heads/master/first-names.txt").split("\n")]
+    return list_of_first_names
 
 @app.route("/")
 def index():

@@ -2,7 +2,7 @@ import Category from "../Components/Category";
 import { useState } from "react";
 
 function App() {
-  const categories = ["countries", "cities", "animals", "fruits", "car brands"];
+  const categories = ["countries", "cities", "animals", "fruits", "car brands","first names"];
 
   const [selectedCategories, setSelectedCategories] = useState([]);
 
