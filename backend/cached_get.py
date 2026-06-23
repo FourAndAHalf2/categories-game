@@ -10,14 +10,26 @@ from glob import glob
 cache = {}
 
 
-def cached_get(url: str, cache_duration=10, headers: dict | None = None) -> str:
+def cached_get(url: str, cache_duration:int=10, headers: dict | None = None) -> str:
+    """# Fetching and caching data of a website for given time 
+
+    after fetching given url, the results are saved in `data/cache` directory if http code is 200
+
+    Args:
+        url (str): url of website to fetch
+        cache_duration (int): time in minutes in what cached data will be read, if value is less than 0, function always return cached data - used for static data
+        headers (dict | None, optional): headers used while fetching data. Defaults to None.
+
+    Returns:
+        str: result of the fetch
+    """
     if headers is None:
         headers = {}
 
     now = datetime.now()
 
     entry = cache.get(url)
-    if entry and entry["expiry"] > now:
+    if entry and (entry["expiry"] > now or cache_duration < -1):
         return entry["content"]
 
     hash_of_url = sha256(url.encode()).hexdigest()
@@ -43,7 +55,6 @@ def cached_get(url: str, cache_duration=10, headers: dict | None = None) -> str:
         else:
             file_path.unlink(missing_ok=True)
 
-    # Pobieranie z internetu
     response = get(url, headers=headers)
     response.raise_for_status()
 
@@ -59,30 +70,3 @@ def cached_get(url: str, cache_duration=10, headers: dict | None = None) -> str:
 
     return response.text
 
-
-def cached_get_static(url: str, headers: dict | None = None) -> str:
-    """# Fetching and caching static data of a website
-
-    after fetching given url, the results are saved in `data/cache` directory if http code is 200
-
-    Args:
-        url (str): url of website to fetch
-        headers (dict | None, optional): headers used while fetching data. Defaults to None.
-
-    Returns:
-        str: result of the fetch
-    """
-
-    data = []
-    path = Path(__file__).parent / "data" / "cache" / sha256(url.encode()).hexdigest()
-    if isfile(path):
-        with open(path) as file:
-            data = load(file)
-    else:
-        response = get(url, headers=headers)
-
-        data = response.text
-        with open(path, "w") as file:
-            dump(data, file)
-
-    return data

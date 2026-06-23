@@ -1,6 +1,6 @@
 from flask import Flask, jsonify, render_template
 from flask_cors import CORS
-from cached_get import cached_get, cached_get_static
+from cached_get import cached_get
 from os import getenv
 from json import loads
 from time import time
@@ -55,7 +55,7 @@ def countries():
 @app.route("/api/cities")
 @calculate_average_response_time
 def cities():
-    list_of_cities = cached_get_static(
+    list_of_cities = cached_get(
         "https://raw.githubusercontent.com/FinNLP/cities-list/refs/heads/master/list.txt"
     ).split("\n")
     return jsonify(list_of_cities)
@@ -64,7 +64,7 @@ def cities():
 @app.route("/api/animals")
 @calculate_average_response_time
 def animals():
-    list_of_animals = cached_get_static(
+    list_of_animals = cached_get(
         "https://raw.githubusercontent.com/sroberts/wordlists/refs/heads/master/animals.txt"
     ).split("\n")
 
@@ -74,7 +74,7 @@ def animals():
 @app.route("/api/fruits")
 @calculate_average_response_time
 def fruits():
-    list_of_fruits = cached_get_static(
+    list_of_fruits = cached_get(
         "https://gist.githubusercontent.com/lasagnaphil/7667eaeddb6ed0c565f0cb653d756942/raw/e05dbc73062aa1679b733e8f9f9b32e003c59d0e/fruits.txt"
     ).split("\n")
 
@@ -84,7 +84,7 @@ def fruits():
 @app.route("/api/car-brands")
 @calculate_average_response_time
 def car_brands():
-    list_of_car_brands = cached_get_static(
+    list_of_car_brands = cached_get(
         "https://gist.githubusercontent.com/pimatco/64aec435e2a0abeeac8f30e24f918c11/raw/abaa40fd556e00cdddd7209836daf640740deaac/carbrands.json"
     )
     list_of_car_brands = loads(list_of_car_brands)
@@ -94,7 +94,7 @@ def car_brands():
 @app.route("/api/first-names")
 @calculate_average_response_time
 def first_names():
-    list_of_first_names = [i.strip() for i in cached_get_static("https://raw.githubusercontent.com/dominictarr/random-name/refs/heads/master/first-names.txt").split("\n")]
+    list_of_first_names = [i.strip() for i in cached_get("https://raw.githubusercontent.com/dominictarr/random-name/refs/heads/master/first-names.txt").split("\n")]
     return list_of_first_names
 
 @app.route("/")
