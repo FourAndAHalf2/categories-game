@@ -67,3 +67,4 @@ Frontend is a Vite React app; backend is a Flask API.
 - https://raw.githubusercontent.com/sroberts/wordlists/refs/heads/master/animals.txt - dataset used for list of animals
 - https://gist.githubusercontent.com/lasagnaphil/7667eaeddb6ed0c565f0cb653d756942/raw/e05dbc73062aa1679b733e8f9f9b32e003c59d0e/fruits.txt - dataset used for list of fruits
 - https://gist.githubusercontent.com/pimatco/64aec435e2a0abeeac8f30e24f918c11/raw/abaa40fd556e00cdddd7209836daf640740deaac/carbrands.json - dataset used for car brands
+- https://raw.githubusercontent.com/dominictarr/random-name/refs/heads/master/first-names.txt dataset used for list of first names
