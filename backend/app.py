@@ -45,6 +45,11 @@ def calculate_average_response_time(fn):
     return wrapper
 
 
+@app.route("/api/all-categories")
+def all_categories():
+    return ["countries", "cities", "animals", "fruits", "car-brands", "first-names"]
+
+
 @app.route("/api/category/countries")
 @calculate_average_response_time
 def countries():
@@ -91,18 +96,27 @@ def car_brands():
     list_of_car_brands = [brand["name"] for brand in list_of_car_brands]
     return jsonify(list_of_car_brands)
 
+
 @app.route("/api/category/first-names")
 @calculate_average_response_time
 def first_names():
-    list_of_first_names = [i.strip() for i in cached_get("https://raw.githubusercontent.com/dominictarr/random-name/refs/heads/master/first-names.txt").split("\n")]
+    list_of_first_names = [
+        i.strip()
+        for i in cached_get(
+            "https://raw.githubusercontent.com/dominictarr/random-name/refs/heads/master/first-names.txt"
+        ).split("\n")
+    ]
     return list_of_first_names
+
 
 @app.route("/")
 def index():
     return render_template(
         "index.html",
         names=[i.__name__ for i in response_times],
-        average_response_times=[round(sum(i) / len(i)*100,2) for i in response_times.values()],
+        average_response_times=[
+            round(sum(i) / len(i) * 100, 2) for i in response_times.values()
+        ],
         length=len(response_times),
     )
 

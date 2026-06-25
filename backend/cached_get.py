@@ -10,8 +10,8 @@ from glob import glob
 cache = {}
 
 
-def cached_get(url: str, cache_duration:int=10, headers: dict | None = None) -> str:
-    """# Fetching and caching data of a website for given time 
+def cached_get(url: str, cache_duration: int = 10, headers: dict | None = None) -> str:
+    """# Fetching and caching data of a website for given time
 
     after fetching given url, the results are saved in `data/cache` directory if http code is 200
 
@@ -69,4 +69,3 @@ def cached_get(url: str, cache_duration:int=10, headers: dict | None = None) -> 
     }
 
     return response.text
-

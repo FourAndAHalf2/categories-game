@@ -1,8 +1,14 @@
 import Category from "../Components/Category";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function App() {
-  const categories = ["countries", "cities", "animals", "fruits", "car brands","first names"];
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    fetch("/api/all-categories")
+      .then((res) => res.json())
+      .then((data) => setCategories(data));
+  });
 
   const [selectedCategories, setSelectedCategories] = useState([]);
 
