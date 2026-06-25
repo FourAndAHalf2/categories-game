@@ -25,7 +25,7 @@ export default function Practice() {
 
   useEffect(() => {
     selectedCategories.forEach((cat) => {
-      fetch(`/api/${cat}`)
+      fetch(`/api/category/${cat}`)
         .then((res) => res.json())
         .then((data) => (listOfCorrectAnswers[cat] = data));
     });

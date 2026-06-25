@@ -45,14 +45,14 @@ def calculate_average_response_time(fn):
     return wrapper
 
 
-@app.route("/api/countries")
+@app.route("/api/category/countries")
 @calculate_average_response_time
 def countries():
     countries_list = get_countries()
     return jsonify(countries_list)
 
 
-@app.route("/api/cities")
+@app.route("/api/category/cities")
 @calculate_average_response_time
 def cities():
     list_of_cities = cached_get(
@@ -61,7 +61,7 @@ def cities():
     return jsonify(list_of_cities)
 
 
-@app.route("/api/animals")
+@app.route("/api/category/animals")
 @calculate_average_response_time
 def animals():
     list_of_animals = cached_get(
@@ -71,7 +71,7 @@ def animals():
     return jsonify([i.capitalize() for i in list_of_animals])
 
 
-@app.route("/api/fruits")
+@app.route("/api/category/fruits")
 @calculate_average_response_time
 def fruits():
     list_of_fruits = cached_get(
@@ -81,7 +81,7 @@ def fruits():
     return jsonify([i.capitalize() for i in list_of_fruits])
 
 
-@app.route("/api/car-brands")
+@app.route("/api/category/car-brands")
 @calculate_average_response_time
 def car_brands():
     list_of_car_brands = cached_get(
@@ -91,7 +91,7 @@ def car_brands():
     list_of_car_brands = [brand["name"] for brand in list_of_car_brands]
     return jsonify(list_of_car_brands)
 
-@app.route("/api/first-names")
+@app.route("/api/category/first-names")
 @calculate_average_response_time
 def first_names():
     list_of_first_names = [i.strip() for i in cached_get("https://raw.githubusercontent.com/dominictarr/random-name/refs/heads/master/first-names.txt").split("\n")]
